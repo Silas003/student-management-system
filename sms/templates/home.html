@@ -6,25 +6,45 @@
     <title>Student Management system</title>
 </head>
 <body>
-    <h1>student Management system</h1><h1>Add Student</h1><h1>All Students</h1>
+    <h1><a href="{% url 'login' %}">login</a></h1>
+    <h1><a href="{% url 'logout' %}">logout</a></h1>
+    <h1>student Management system</h1><h3><a href="{% url 'add' %}">Add Student</a></h3><h1>All Students</h1>
+    
     <table>
-        <thead>
-            <td>StudentID</td>
-            <td>Student Name</td>
-            <td>Email</td>
-            <td>college</td>
-            <td>program of study</td>
-            <td>Year of Admission</td>
-        </thead>
-        <tr>
-            <td>20866600</td>
-            <td>silas kumi</td>
-            <td>silaskumi4@gmail.com</td>
-            <td>college of science</td>
-            <td>computer science</td>
-            <td>2021</td>
-
-        </tr>
+        {%if user.is_authenticated%}
+        {%if student %}
+        
+            <thead>
+            <tr>
+            <th>StudentID</th>
+            <th>Student Name</th>
+            <th>Email</th>
+            <th>college</th>
+            <th>program of study</th>
+            <th>Year of Admission</th>
+            <th>Action</th>
+            </tr>
+            </thead>
+            {% for student in student%}
+            <tr>
+            <td><a href="{% url 'view' student.id %}">{{student.StudentID}}</a></td>
+            <td>{{student.StudentName}}</td>
+            <td>{{student.Email}}</td>
+            <td>{{student.College}}</td>
+            <td>{{student.POS}}</td>
+            <td>{{student.YOA}}</td>
+            <td><a href="{% url 'update' student.id %}">Update</a></td>
+            <td><a href="{% url 'delete' student.id %}">Delete</a></td>
+            </tr>
+            {%endfor%}
+        {% else%}
+        <h1>no student has been admitted</h1>
+        
+       
+        {%endif%}
+        {%else%}
+        <h1><a href="{% url 'login'%}">login</a></h1>
+        {% endif %}
     </table>
     
     
