@@ -18,3 +18,8 @@ class UserForm(forms.ModelForm):
             'password':'password',
             
         }
+
+class Login(forms.ModelForm):
+    class Meta:
+        model=User
+        fields=['username','password']

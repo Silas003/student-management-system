@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if message%}
+    <h3>{{message}}user created successfully,go to <a href="{% url 'home'%}">homepage</a></h3>
+    {% endif%}
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit">
+    </form>
+    <h2>Already have an account?<strong><a href="{% url 'login' %}">login</a></strong> </h2>
+</body>
+</html>
