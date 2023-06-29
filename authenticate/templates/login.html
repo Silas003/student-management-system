@@ -1,0 +1,14 @@
+<a href="{% url 'home' %}">home</a>
+<form method="POST" class="form-group" action="">
+    {% csrf_token%}
+    <h3>Username</h3>
+    <input type="text" name="username">
+    <h3>Password</h3>
+    <input type="password" name="password">
+    <button type="submit">submit</button>
+    <br>
+    {% if fail%}
+        <h2>{{message}}</h2>
+    {% endif%}
+    <h3>Do you need an account?<strong><a href="{% url 'register'%}">sign up</a></strong></h3>
+</form>

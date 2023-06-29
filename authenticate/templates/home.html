@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+</head>
+<body>
+    {%if messages%}
+        {% for message in messages%}
+            {{message}}
+        {%endfor%}
+    {%endif%}
+    <a href="{% url 'home' %}">home</a>
+    {% if user.is_authenticated%}
+        <h1>Simple Authentication system,{{user.username}}</h1>
+        
+        <a href="{% url 'logout' %}">logout</a>
+    {%else%}
+        <h1>Simple Authentication system</h1>
+        <a href="{% url 'register' %}">signup</a>
+        <strong><a href="{% url 'login' %}">sign-in</a></strong>
+    {% endif %}
+</body>
+</html>

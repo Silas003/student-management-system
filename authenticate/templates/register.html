@@ -1,0 +1,7 @@
+<a href="{% url 'home' %}">home</a>
+<form method="POST" class="form-group" action="">
+    {% csrf_token%}
+    {{form.as_p }}
+    <button type="submit">submit</button>
+</form>
+<h3>Already have an account?<a href="{% url 'login' %}">login</a></h3>
