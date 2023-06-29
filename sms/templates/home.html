@@ -6,13 +6,14 @@
     <title>Student Management system</title>
 </head>
 <body>
-    {% if user.is_authenicated%}
+    {% if user.is_authenticated%}
     <h3><a href="{% url 'logout' %}">logout</a></h3>
     {%else%}
     <h3><a href="{% url 'login' %}">login</a></h3>
+    <h3><a href="{% url 'register' %}">register</a></h3>
     {% endif%}
     <h1>student Management system</h1><h3><a href="{% url 'add' %}">Add Student</a></h3><h1>All Students</h1>
-    
+   {%if user.is_authenticated%}
     <table>
         
         {%if student %}
@@ -45,7 +46,7 @@
         
        
         {%endif%}
-        
+        {%endif%}
     </table>
     
     

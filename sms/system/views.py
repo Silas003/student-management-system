@@ -4,7 +4,7 @@ from .models import Student
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import StudentForm,UserForm,Login
+from .forms import StudentForm,UserForm
 from django.contrib.auth import authenticate,login,logout
 
 
@@ -70,18 +70,17 @@ def register(request):
 
 def loginpage(request):
     if request.method=="POST":
-        form=Login(request.POST)
-        
-        user=form.cleaned_data['username']
-        pass1=form.cleaned_data['password']
+        user=request.POST['username']
+        pass1=request.POST['password']
         user=authenticate(username=user,password=pass1)
         if user is not None:
             login(request,user)
             messages.info(request,'user login successful')
             return redirect('home')
-    form=Login()
-    return render(request,'login.html',{'form':form})
+    
+    return render(request,'login.html')
 
 def logoutpage(request):
     logout(request)
     return redirect('home')
+

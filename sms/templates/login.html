@@ -1,6 +1,9 @@
-<form method="POST" action="{% url 'home' %}">
+<form method="POST" action="">
     {%csrf_token%}
-    {{form.as_p}}
+    <h3>Username</h3>
+    <input type="text" name="username">
+    <h3>Password</h3>
+    <input type="password" name="password">
     <input type="submit">
 </form>
 <strong><a href="{% url 'register'%}">regsiter/signup</a></strong>
