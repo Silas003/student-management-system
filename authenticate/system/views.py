@@ -14,14 +14,14 @@ def home(request):
 
 def register(request):
     if request.method=="POST":
-        form=UserCreationForm(request.POST)
+        form=UserForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'New user created successfully!')
             return redirect('login')
-        return render(request,'register.html',{'form':form}) 
+        
     
-    form=UserCreationForm()
+    form=UserForm()
     return render(request,'register.html',{'form':form}) 
 
 def loginpage(request):
